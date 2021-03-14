@@ -84,6 +84,11 @@ mountd - 20048/udp, 20048/tcp
 rpcbind - 111/udp, 111/tcp
 nfs - 2049/udp, 2049/tcp
 echo 'Network ports are enabled'
+echo 'NFS utils install'
+showmount -e "192.168.100.3"
+Export list for "192.168.100.3":
+/ISO *
+echo 'NFS itils installed and NFS folders are shown'
 
 echo 'Creating mount point'
 mkdir /TEST
