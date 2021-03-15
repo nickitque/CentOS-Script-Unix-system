@@ -34,10 +34,18 @@ echo 'Step four is going'
 (echo n; echo p; echo 1; echo ; echo ; echo t; echo fd; echo w) | fdisk /dev/sdd
 echo 'Fdisk operation is Done'
 
+echo 'Creating verbose'
 yum install mdadm -y
 mdadm --create --verbose /dev/md5 --level=5 --raid-devices=3 /dev/sdb1 /dev/sdc1 /dev/sdd1
 echo 'Mdadm is done'
 lsblk
+echo 'Mdadm verbose is done'
+
+echo 'Creating mdadm config file'
+echo "DEVICE partitions" > /etc/mdadm/mdadm.conf
+mdadm --detail --scan --verbose | awk '/ARRAY/ {print}' >> /etc/mdadm/mdadm.conf
+mdadm --detail --scan --verbose
+echo 'Mdadm config file is created'
 echo 'Four step is ok'
 
 #5 Setting up LVM on RAID
@@ -47,6 +55,13 @@ fdisk /dev/md5
 pvcreate /dev/md5
 vgcreate LVM-New /dev/md5
 lvcreate -l +100%FREE -n LVM_data LVM-New
+
+echo 'Check RAID condition'
+raidstart /dev/md5
+cat /proc/mdstat
+echo 'check' >/sys/block/md5/md/sync_action
+cat /sys/block/md5/md/mismatch_cnt
+echo 'Raid is checked'
 echo 'Five step is ok'
 
 #6 XFS on LVM
