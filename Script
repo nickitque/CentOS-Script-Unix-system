@@ -85,8 +85,8 @@ echo 'Six step is ok'
 
 #7 Mounting
 echo 'Seven step is going'
-mkdir /mounting
-mount /dev/LVM-New/LVM_data /mounting
+mkdir /mnt/$mounting
+mount /dev/LVM-New/LVM_data /$mounting
 echo 'Seven step is ok'
 
 #8 NFS
