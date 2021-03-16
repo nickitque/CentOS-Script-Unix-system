@@ -17,7 +17,6 @@ echo 'Third step is going'
 mkdir -p /cdrom
 mount CentOS-7DVD.iso /cdrom
 mv /etc/yum.repos.d/*.repo /tmp/
-vi /etc/yum.repos.d/local.repo
 echo -e '[LocalRepo] \nname=LocalRepository \nenabled=1 \ngpgcheck=1 \nbaseurl=file:///cdrom  \ngpgkey=file:///etc/pki/rpg-gpg/RPM-GPG-KEY-CentOS-7' >> /etc/yum.repos.d/local.repo && echo Success: file local repo has been changed
 echo 'Third step is ok'
 
