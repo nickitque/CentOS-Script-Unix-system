@@ -34,18 +34,18 @@ else
 fi
 
 echo 'Creating disk names'
-echo "Enter disk name num1: "
-   read sdb
-echo "Enter disk name num2: "
-   read sdc
-echo "Enter disk name num3: "
-   read sdd
+echo "Enter disk name sdb: "
+   read Firstn
+echo "Enter disk name sdc: "
+   read Secondn
+echo "Enter disk name sdd: "
+   read Thirdn
 echo 'disk names are created'
 
 echo 'Step four is going'
-(echo n; echo p; echo 1; echo ; echo ; echo t; echo fd; echo w) | fdisk /dev/sdb
-(echo n; echo p; echo 1; echo ; echo ; echo t; echo fd; echo w) | fdisk /dev/sdc
-(echo n; echo p; echo 1; echo ; echo ; echo t; echo fd; echo w) | fdisk /dev/sdd
+(echo n; echo p; echo 1; echo ; echo ; echo t; echo fd; echo w) | fdisk /dev/$Firstn
+(echo n; echo p; echo 1; echo ; echo ; echo t; echo fd; echo w) | fdisk /dev/$Secondn
+(echo n; echo p; echo 1; echo ; echo ; echo t; echo fd; echo w) | fdisk /dev/$Thirdn
 echo 'Fdisk operation is Done'
 
 echo 'Creating verbose'
