@@ -91,18 +91,18 @@ echo 'Seven step is ok'
 #8 NFS
 echo 'Eight step is going'
 echo 'Installing nfs utilites'
-sudo yum install nfs-utils
-sudo systemctl start rpcbind
-sudo systemctl enable rpcbind
-sudo systemctl start nfs-server
-sudo systemctl enable nfs-server
-sudo systemctl start rpc-statd
-sudo systemctl start nfs-idmapd
-echo 'nfs utilites are installed'
+yum -y install nfs-utils 
+systemctl start rpcbind
+systemctl enable rpcbind
+systemctl start nfs-server
+systemctl enable nfs-server
+systemctl start rpc-statd
+systemctl start nfs-idmapd
+'nfs utilites are installed'
 
 echo 'making ISO dir'
 mkdir /ISO
-sudo chmod 777 /ISO
+chmod 777 /ISO
 cat /etc/exports
 /ISO *(rw,sync,no_root_squash)
 echo 'ISO dir is created'
@@ -114,17 +114,14 @@ nfs - 2049/udp, 2049/tcp
 echo 'Allowed connections on network ports'
 echo 'Browse available NFS folders'
 showmount -e "192.168.100.3"
-Export list for "192.168.100.3":
-/ISO *
 echo 'Available NFS folders shown'
 
 echo 'Creating mount point'
 mkdir /TEST
-sudo mount -t nfs 192.168.100.3:/ISO /TEST
+mount -t nfs 192.168.100.3:/ISO /TEST
 echo 'MP done'
 
 echo 'Checking connection'
 df -Th
 echo 'Connection checked'
 echo 'Eight step is done'
-
