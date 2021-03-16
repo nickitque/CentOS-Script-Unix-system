@@ -18,15 +18,29 @@ mkdir -p /cdrom
 mount CentOS-7DVD.iso /cdrom
 mv /etc/yum.repos.d/*.repo /tmp/
 vi /etc/yum.repos.d/local.repo
-echo '[LocalRepo]' >> etc/yum.repos.d/local.repo
-echo 'name=LocalRepository' >> etc/yum.repos.d/local.repo
-echo 'baseurl=file:///cdrom' >> etc/yum.repos.d/local.repo
-echo 'enabled=1' >> etc/yum.repos.d/local.repo
-echo 'gpgcheck=1' >> etc/yum.repos.d/local.repo
-echo 'gpgkey=file:///etc/pki/rpg-gpg/RPM-GPG-KEY-CentOS-7 >> etc/yum.repos.d/local.repo
-Echo 'Third step is ok'
+echo -e '[LocalRepo] \nname=LocalRepository \nenabled=1 \ngpgcheck=1 \nbaseurl=file:///cdrom  \ngpgkey=file:///etc/pki/rpg-gpg/RPM-GPG-KEY-CentOS-7' >> /etc/yum.repos.d/local.repo && echo Success: file local repo has been changed
+echo 'Third step is ok'
 
 #4 Setting up RAID5
+
+echo 'Enter Mountpoint: '
+   read mounting
+if ! [ -d $mounting ];
+then
+   echo 'No directory'
+   mkdir $mounting && echo Success: Mountpoint is created
+else
+   echo 'This Dir already exists'
+fi
+
+echo 'Creating disk names'
+echo "Enter disk name num1: "
+   read sdb
+echo "Enter disk name num2: "
+   read sdc
+echo "Enter disk name num3: "
+   read sdd
+echo 'disk names are created'
 
 echo 'Step four is going'
 (echo n; echo p; echo 1; echo ; echo ; echo t; echo fd; echo w) | fdisk /dev/sdb
@@ -114,3 +128,4 @@ echo 'Checking connection'
 df -Th
 echo 'Connection checked'
 echo 'Eight step is done'
+
