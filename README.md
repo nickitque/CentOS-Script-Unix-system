@@ -1,1 +1,1 @@
-<p>Scripts for Unix system CentOS. This scripts can configure network to&nbsp;have ssh access,&nbsp;add local DVD ISO and&nbsp;set up up RAID5.</p>
+<h3>Scripts for Unix system <a href="https://www.centos.org/">CentOS</a>. This scripts can configure network to&nbsp;have ssh access,&nbsp;add local DVD ISO and&nbsp;set up up <a href="https://www.techtarget.com/searchstorage/definition/RAID-5-redundant-array-of-independent-disks">RAID5</a>.</h3>
